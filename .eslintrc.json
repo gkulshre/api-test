@@ -1,0 +1,23 @@
+{
+  "extends": "strongloop",
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
+  "rules": {
+    "max-len": [2, 420, 2, {
+      "ignoreComments": true
+    }]  },
+  "globals": {
+    "rmqC": true,
+    "orchSyncQueue": true,
+    "syncQueue": true,
+    "asyncQueue": true,
+    "io": true,
+    "security": true,
+    "endpoints": true
+  }
+}

@@ -1,0 +1,17 @@
+package-lock.json
+\.idea/
+\node_modules/
+
+build/
+
+coverage/
+
+\.nyc_output/
+
+test_results\.xml
+
+logs/
+
+apidoc/
+
+.vscode/

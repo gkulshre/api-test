@@ -1,0 +1,93 @@
+{
+  "name": "slamr-api-gateway",
+  "version": "0.1.0",
+  "description": "SLAM-R System API Interface",
+  "author": "Michael West <michael.west@metova.com> (https://www.cybercents.com)",
+  "contributors": [
+    "Michael West <michael.west@metova.com> (https://www.cybercents.com)",
+    "John Slay <john.slay@metova.com> (https://www.cybercents.com)",
+    "Greg Cesnik <greg.cesnik@metova.com> (https://www.cybercents.com)"
+  ],
+  "homepage": "https://www.cybercents.com",
+  "repository": "https://bitbucket.org/cybercents/slamr-api-gateway",
+  "main": "./src/bin/server.js",
+  "private": true,
+  "scripts": {
+    "start": "cross-env NODE_ENV=development nodemon --exec babel-node src/bin/server.js",
+    "debug": "cross-env NODE_ENV=testing nodemon --exec babel-node src/bin/server.js",
+    "build:clean": "rm -rf build/*",
+    "build:out": "babel src --presets babel-preset-env -d build",
+    "build:copysd": "cp -r src/systemd build/.",
+    "build:copycf": "cp -r config build/.",
+    "build:copynm": "cp -r node_modules build/.",
+    "build": "npm run build:clean && npm run build:out && npm run build:copysd  && npm run build:copycf && npm run build:copynm"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "body-parser": "~1.18.2",
+    "config": "^2.0.1",
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.16.4",
+    "express-list-endpoints": "^4.0.0",
+    "fs-extra": "^7.0.1",
+    "http-server": "^0.11.1",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.14",
+    "morgan": "^1.9.1",
+    "node-http-server": "^8.1.2",
+    "request": "^2.8.0",
+    "socket.io": "^2.1.1",
+    "socket.io-stream": "^0.9.1",
+    "uuid": "^3.3.2",
+    "winston": "^3.1.0",
+    "winston-daily-rotate-file": "~3.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/node": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@types/uuid": "^8.3.3",
+    "acorn": "^6.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^4.1.6",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "cross-env": "^5.1.4",
+    "eslint": "^5.5.0",
+    "eslint-config-google": "^0.10.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-strongloop": "^2.1.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^2.4.0",
+    "lint-staged": "^8.2.0",
+    "mocha": "^4.0.1",
+    "mocha-jenkins-reporter": "^0.4.1",
+    "nodemon": "^1.18.3",
+    "nyc": "^11.6.0",
+    "prettier": "^1.14.2",
+    "sinon": "^4.5.0",
+    "supertest": "^3.1.0"
+  },
+  "engines": {
+    "node": ">= 10.12.0",
+    "npm": ">= 6.4.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "./node_modules/.bin/eslint --fix",
+      "git add"
+    ]
+  }
+}
